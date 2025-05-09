@@ -824,8 +824,9 @@ video {
   --tw-backdrop-blur: blur(12px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-    min-height: 400px; /* Altura mínima para evitar saltos */
+    min-height: 400px;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    overflow-x: hidden;
 }
 
   .clients-table-container.fade {
@@ -837,47 +838,111 @@ video {
   width: 100%;
   border-collapse: collapse;
   color: var(--text-primary);
-    table-layout: fixed; /* Garante colunas consistentes */
+    table-layout: auto;
+    transition: all 0.3s ease-in-out;
 }
 
   .clients-table th,
   .clients-table td {
-  border-bottom-width: 1px;
-  border-color: rgba(255,255,255,0.15);
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
   text-align: left;
-    min-width: 100px; /* Garante largura mínima para colunas */
+    vertical-align: middle;
+    transition: all 0.3s ease-in-out;
 }
+
+  /* Definir larguras mínimas e máximas para cada coluna */
+  .clients-table th.status-column,
+  .clients-table td.status-column {
+    min-width: 50px;
+    max-width: 60px;
+  }
+
+  .clients-table th.name-column,
+  .clients-table td.name-column {
+    min-width: 150px;
+    max-width: 200px;
+  }
+
+  .clients-table th.email-column,
+  .clients-table td.email-column {
+    min-width: 180px;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .clients-table th.plan-column,
+  .clients-table td.plan-column {
+    min-width: 120px;
+    max-width: 150px;
+  }
+
+  .clients-table th.method-column,
+  .clients-table td.method-column {
+    min-width: 140px;
+    max-width: 160px;
+  }
+
+  .clients-table th.due-date-column,
+  .clients-table td.due-date-column {
+    min-width: 110px;
+    max-width: 140px;
+  }
+
+  .clients-table th.gross-amount-column,
+  .clients-table td.gross-amount-column {
+    min-width: 100px;
+    max-width: 120px;
+  }
+
+  .clients-table th.net-amount-column,
+  .clients-table td.net-amount-column {
+    min-width: 100px;
+    max-width: 120px;
+  }
+
+  .clients-table th.actions-column,
+  .clients-table td.actions-column {
+    min-width: 100px;
+    max-width: 120px;
+    position: relative;
+  }
 
   .clients-table th {
   cursor: pointer;
-  background-color: var(--table-header-bg);
-  font-weight: 500;
-  color: var(--text-secondary);
+  color: var(--text-primary);
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+    background: var(--table-header-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 1rem;
 }
 
-  .clients-table th:hover {
-    background: rgba(55, 65, 81, 0.9);
-  }
-
-  .clients-table th:hover .sort-icon {
-    color: var(--accent-blue);
+  .clients-table td {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    font-size: 0.9rem;
   }
 
   .clients-table tr {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 300ms;
+    background: var(--table-row-bg);
+    border-radius: 8px;
+    margin-bottom: 4px;
 }
 
   .clients-table tr:hover {
-    background: rgba(55, 65, 81, 0.5);
+    background: rgba(55, 65, 81, 0.7);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   .clients-table .sort-icon {
@@ -887,81 +952,113 @@ video {
   color: var(--text-primary);
 }
 
-  .clients-table .email-column {
-    max-width: 200px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .client-card {
-  cursor: pointer;
-  border-radius: 0.5rem;
-  background-color: var(--table-bg);
-  padding: 1rem;
-  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  --tw-backdrop-blur: blur(4px);
-  -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-  backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
-
-  .client-card .expanded-content {
-    animation: slideDown 0.3s ease-in-out;
-  }
-
-  @keyframes slideDown {
-    from {
-      opacity: 0;
-      height: 0;
+  /* Ajustes de responsividade */
+  /* Desktop Grande (≥1280px) */
+  @media (min-width: 1280px) {
+    .clients-table th,
+    .clients-table td {
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
     }
-    to {
-      opacity: 1;
-      height: auto;
+
+    .clients-table th.name-column,
+    .clients-table td.name-column {
+      min-width: 150px;
+      max-width: 200px;
+    }
+
+    .clients-table th.email-column,
+    .clients-table td.email-column {
+      min-width: 180px;
+      max-width: 220px;
+    }
+
+    .clients-table th.plan-column,
+    .clients-table td.plan-column {
+      min-width: 120px;
+      max-width: 150px;
+    }
+
+    .clients-table th.method-column,
+    .clients-table td.method-column {
+      min-width: 140px;
+      max-width: 160px;
+    }
+
+    .clients-table th.due-date-column,
+    .clients-table td.due-date-column {
+      min-width: 110px;
+      max-width: 140px;
     }
   }
 
+  /* Desktop Médio (1024px - 1279px) */
   @media (min-width: 1024px) and (max-width: 1279px) {
     .clients-table th,
     .clients-table td {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-  }
+      font-size: 0.85rem;
+      padding: 0.6rem 0.8rem;
+    }
 
-    .clients-table th {
-    white-space: nowrap;
-  }
+    .clients-table th.name-column,
+    .clients-table td.name-column {
+      min-width: 160px;
+      max-width: 220px;
+    }
 
-    .clients-table .email-column {
+    .clients-table th.email-column,
+    .clients-table td.email-column {
+      min-width: 160px;
+      max-width: 200px;
+    }
+
+    .clients-table th.plan-column,
+    .clients-table td.plan-column {
+      min-width: 130px;
+      max-width: 160px;
+    }
+
+    .clients-table th.method-column,
+    .clients-table td.method-column {
+      min-width: 150px;
+      max-width: 170px;
+    }
+
+    .clients-table th.due-date-column,
+    .clients-table td.due-date-column {
+      min-width: 120px;
       max-width: 150px;
     }
   }
 
+  /* Tablet (768px - 1023px) */
   @media (min-width: 768px) and (max-width: 1023px) {
     .clients-table th,
     .clients-table td {
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
-    font-size: 0.75rem;
-    line-height: 1rem;
-  }
+      font-size: 0.8rem;
+      padding: 0.5rem 0.6rem;
+    }
 
-    .clients-table th {
-    white-space: nowrap;
-  }
+    .clients-table th.name-column,
+    .clients-table td.name-column {
+      min-width: 180px;
+      max-width: 250px;
+    }
 
-    .clients-table .email-column {
-      max-width: 120px;
+    .clients-table th.plan-column,
+    .clients-table td.plan-column {
+      min-width: 140px;
+      max-width: 180px;
+    }
+
+    .clients-table th.due-date-column,
+    .clients-table td.due-date-column {
+      min-width: 130px;
+      max-width: 160px;
     }
   }
 
+  /* Mobile (<768px) */
   @media (max-width: 767px) {
     .clients-table-container {
     padding: 0.25rem;
@@ -1022,7 +1119,7 @@ video {
   right: 0px;
   top: 100%;
   z-index: 50;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   width: 12rem;
   border-radius: 0.5rem;
   border-width: 1px;
@@ -1034,6 +1131,7 @@ video {
   --tw-backdrop-blur: blur(12px);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+    padding: 0.5rem 0;
 }
 
   @media (max-width: 640px) {
@@ -1064,12 +1162,12 @@ video {
   transition-duration: 300ms;
 }
 
+  .action-menu-item:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
   .action-menu-item > svg {
     margin-right: 0.75rem;
-  }
-
-  .action-menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
   }
 
   @media (max-width: 639px) {
@@ -1258,13 +1356,12 @@ video {
   .modal-overlay {
   position: fixed;
   inset: 0px;
-  z-index: 50;
+  z-index: 40;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1));
   --tw-bg-opacity: 0.6;
-  padding: 1rem;
     animation: fadeIn 0.3s ease-in-out;
 }
 
@@ -1411,6 +1508,15 @@ video {
       transform: translateY(0);
     }
   }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 .container {
   width: 100%;
 }
@@ -1481,11 +1587,11 @@ video {
 .mb-1 {
   margin-bottom: 0.25rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .mb-4 {
   margin-bottom: 1rem;
-}
-.mb-5 {
-  margin-bottom: 1.25rem;
 }
 .mb-6 {
   margin-bottom: 1.5rem;
@@ -1517,6 +1623,9 @@ video {
 .hidden {
   display: none;
 }
+.h-16 {
+  height: 4rem;
+}
 .h-48 {
   height: 12rem;
 }
@@ -1528,6 +1637,9 @@ video {
 }
 .w-12 {
   width: 3rem;
+}
+.w-16 {
+  width: 4rem;
 }
 .w-28 {
   width: 7rem;
@@ -1559,6 +1671,15 @@ video {
 }
 .transform {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+@keyframes spin {
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
 .cursor-not-allowed {
   cursor: not-allowed;
@@ -1604,6 +1725,11 @@ video {
   margin-right: calc(3rem * var(--tw-space-x-reverse));
   margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
 .space-y-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1632,8 +1758,15 @@ video {
 .border-b {
   border-bottom-width: 1px;
 }
+.border-t-4 {
+  border-top-width: 4px;
+}
 .border-\[rgba\(255\2c 255\2c 255\2c 0\.3\)\] {
   border-color: rgba(255,255,255,0.3);
+}
+.border-blue-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity, 1));
 }
 .border-gray-600 {
   --tw-border-opacity: 1;
@@ -1651,9 +1784,6 @@ video {
 }
 .bg-\[rgba\(255\2c 255\2c 255\2c 0\.1\)\] {
   background-color: rgba(255,255,255,0.1);
-}
-.bg-\[var\(--danger-bg\)\] {
-  background-color: var(--danger-bg);
 }
 .bg-\[var\(--dashboard-bg\)\] {
   background-color: var(--dashboard-bg);
@@ -1679,6 +1809,14 @@ video {
 .bg-gray-800\/70 {
   background-color: rgb(31 41 55 / 0.7);
 }
+.bg-gray-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
+}
+.bg-green-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
+}
 .bg-orange-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 115 22 / var(--tw-bg-opacity, 1));
@@ -1697,6 +1835,9 @@ video {
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
+}
+.bg-opacity-75 {
+  --tw-bg-opacity: 0.75;
 }
 .bg-cover {
   background-size: cover;
@@ -1872,7 +2013,8 @@ video {
   --button-inactive-bg: #AE7DAC;
   --button-inactive-text: #F3DADF;
   --table-bg: rgba(30, 41, 59, 0.9);
-  --table-header-bg: rgba(45, 55, 72, 0.9);
+  --table-header-bg: var(--table-bg);
+  --table-row-bg: linear-gradient(90deg, rgba(30, 41, 59, 0.9), rgba(45, 55, 72, 0.7));
   --nubank-bg: linear-gradient(135deg, #a64dff, #820ad1, #5c078f, #3a055c);
   --pagseguro-bg: linear-gradient(135deg, #ffeb3b, #ffc107, #ffa000, #cc7a00);
   --caixa-bg: linear-gradient(135deg, #4d8cff, #0061a8, #004075, #002b4a);
@@ -1893,10 +2035,6 @@ video {
 .hover\:bg-pink-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 39 119 / var(--tw-bg-opacity, 1));
-}
-.hover\:bg-red-600:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(220 38 38 / var(--tw-bg-opacity, 1));
 }
 .hover\:text-\[var\(--accent-blue\)\]:hover {
   color: var(--accent-blue);
@@ -1926,10 +2064,6 @@ video {
   --tw-ring-color: rgb(236 72 153 / var(--tw-ring-opacity, 1));
 }
 @media (min-width: 640px) {
-
-  .sm\:mb-0 {
-    margin-bottom: 0px;
-  }
 
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1962,10 +2096,6 @@ video {
     display: block;
   }
 
-  .md\:table {
-    display: table;
-  }
-
   .md\:hidden {
     display: none;
   }
@@ -1996,10 +2126,6 @@ video {
 
   .xl\:table-cell {
     display: table-cell;
-  }
-
-  .xl\:hidden {
-    display: none;
   }
 }
 /*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
