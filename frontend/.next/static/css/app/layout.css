@@ -848,7 +848,7 @@ video {
   padding-bottom: 0.5rem;
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-  text-align: left;
+  text-align: center;
     vertical-align: middle;
     transition: all 0.3s ease-in-out;
 }
@@ -920,10 +920,11 @@ video {
   transition-duration: 300ms;
     background: var(--table-header-bg);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 1.1rem;
+    font-weight: 600;
     letter-spacing: 0.02em;
     padding: 0.75rem 1rem;
+    white-space: nowrap;
 }
 
   .clients-table td {
@@ -946,11 +947,78 @@ video {
   }
 
   .clients-table .sort-icon {
-  margin-left: 0.25rem;
   display: inline-block;
   vertical-align: middle;
   color: var(--text-primary);
+    margin-left: 0.5rem;
+    font-size: 0.9rem;
 }
+
+  /* Cores condicionais para Status */
+  .status-text--inativo {
+    color: #ff4d4f;
+  }
+
+  .status-text--ativo,
+  .status-text--verificado {
+    color: #00da77;
+  }
+
+  .status-text--nao-verificado {
+    color: #ff4d4f;
+  }
+
+  /* Cores condicionais para Plano */
+  .plan-text--p2p {
+    color: #F1916D;
+    font-weight: bold;
+  }
+
+  .plan-text--platinum {
+    color: #a64dff;
+    font-weight: bold;
+  }
+
+  .plan-text--comum {
+    color: #4d8cff;
+    font-weight: bold;
+  }
+
+  .plan-text--outros {
+    color: #F3DADF;
+    font-weight: bold;
+  }
+
+  /* Cores condicionais para Método de Pagamento */
+  .method-text--nubank {
+    color: #a64dff;
+    font-weight: bold;
+  }
+
+  .method-text--banco-do-brasil {
+    color: #ffd700;
+    font-weight: bold;
+  }
+
+  .method-text--caixa {
+    color: #4d8cff;
+    font-weight: bold;
+  }
+
+  .method-text--picpay {
+    color: #00da77;
+    font-weight: bold;
+  }
+
+  .method-text--pagseguro {
+    color: #ffa000;
+    font-weight: bold;
+  }
+
+  .method-text--outros {
+    color: #F3DADF;
+    font-weight: bold;
+  }
 
   /* Ajustes de responsividade */
   /* Desktop Grande (≥1280px) */
@@ -1596,6 +1664,12 @@ video {
 .mb-6 {
   margin-bottom: 1.5rem;
 }
+.ml-1 {
+  margin-left: 0.25rem;
+}
+.ml-2 {
+  margin-left: 0.5rem;
+}
 .mr-2 {
   margin-right: 0.5rem;
 }
@@ -1680,6 +1754,9 @@ video {
 }
 .cursor-not-allowed {
   cursor: not-allowed;
+}
+.cursor-pointer {
+  cursor: pointer;
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -1809,10 +1886,6 @@ video {
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity, 1));
-}
-.bg-green-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(34 197 94 / var(--tw-bg-opacity, 1));
 }
 .bg-orange-500 {
   --tw-bg-opacity: 1;
@@ -2021,56 +2094,45 @@ video {
 }
 
 /* Zerar configurações padrão do body e html */
-
 .hover\:bg-blue-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));
 }
-
 .hover\:bg-gray-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity, 1));
 }
-
 .hover\:bg-pink-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 39 119 / var(--tw-bg-opacity, 1));
 }
-
 .hover\:text-\[var\(--accent-blue\)\]:hover {
   color: var(--accent-blue);
 }
-
 .focus\:border-\[var\(--accent-blue\)\]:focus {
   border-color: var(--accent-blue);
 }
-
 .focus\:shadow-\[0_0_0_2px_rgba\(241\2c 145\2c 109\2c 0\.3\)\]:focus {
   --tw-shadow: 0 0 0 2px rgba(241,145,109,0.3);
   --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-
 .focus\:ring-2:focus {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
-
 .focus\:ring-\[var\(--accent-blue\)\]:focus {
   --tw-ring-color: var(--accent-blue);
 }
-
 .focus\:ring-pink-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(236 72 153 / var(--tw-ring-opacity, 1));
 }
-
 @media (min-width: 640px) {
 
   .sm\:grid-cols-2 {
@@ -2098,7 +2160,6 @@ video {
     line-height: 2.25rem;
   }
 }
-
 @media (min-width: 768px) {
 
   .md\:block {
@@ -2109,7 +2170,6 @@ video {
     display: none;
   }
 }
-
 @media (min-width: 1024px) {
 
   .lg\:table-cell {
@@ -2132,12 +2192,62 @@ video {
     flex-direction: row;
   }
 }
-
 @media (min-width: 1280px) {
 
   .xl\:table-cell {
     display: table-cell;
   }
+}
+/*!***************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/toast.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************/
+/* Personalização do react-toastify */
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast {
+  background: var(--table-bg) !important;
+  color: var(--text-primary) !important;
+  border-radius: 0.5rem !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+          backdrop-filter: blur(5px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+  font-family: "Inter", sans-serif !important;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 218, 119, 0.2),
+    rgba(30, 41, 59, 0.9)
+  ) !important;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 77, 79, 0.2),
+    rgba(30, 41, 59, 0.9)
+  ) !important;
+}
+
+.Toastify__toast-body {
+  font-size: 0.9rem !important;
+}
+
+.Toastify__progress-bar {
+  background: var(--accent-blue) !important;
+}
+
+.Toastify__close-button {
+  color: var(--text-primary) !important;
+  opacity: 0.7 !important;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1 !important;
 }
 /*!************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./node_modules/react-toastify/dist/ReactToastify.css ***!
