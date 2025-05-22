@@ -543,8 +543,8 @@ video {
     -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
     border-radius: 1rem;
-    padding: 1.25rem;
-    margin: 1.25rem;
+    padding: 1rem;
+    margin: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     max-width: 100%;
     overflow-x: hidden;
@@ -851,6 +851,9 @@ video {
   text-align: center;
     vertical-align: middle;
     transition: all 0.3s ease-in-out;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
   /* Definir larguras mínimas e máximas para cada coluna */
@@ -870,9 +873,12 @@ video {
   .clients-table td.email-column {
     min-width: 180px;
     max-width: 220px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  }
+
+  .clients-table th.phone-column,
+  .clients-table td.phone-column {
+    min-width: 100px;
+    max-width: 120px;
   }
 
   .clients-table th.plan-column,
@@ -1016,7 +1022,7 @@ video {
     font-weight: bold;
   }
 
-  /* Ajustes de responsividade */
+  /* Ajustes de responsividade para a tabela (apenas md:block) */
   /* Desktop Grande (≥1280px) */
   @media (min-width: 1280px) {
     .clients-table th,
@@ -1037,6 +1043,12 @@ video {
       max-width: 220px;
     }
 
+    .clients-table th.phone-column,
+    .clients-table td.phone-column {
+      min-width: 100px;
+      max-width: 120px;
+    }
+
     .clients-table th.plan-column,
     .clients-table td.plan-column {
       min-width: 120px;
@@ -1054,20 +1066,33 @@ video {
       min-width: 110px;
       max-width: 140px;
     }
+
+    .clients-table th.gross-amount-column,
+    .clients-table td.gross-amount-column {
+      min-width: 100px;
+      max-width: 120px;
+    }
+
+    .clients-table th.net-amount-column,
+    .clients-table td.net-amount-column {
+      min-width: 100px;
+      max-width: 120px;
+    }
   }
 
   /* Desktop Médio (1024px - 1279px) */
   @media (min-width: 1024px) and (max-width: 1279px) {
-    .clients-table th,
-    .clients-table td {
-      font-size: 0.85rem;
-      padding: 0.6rem 0.8rem;
+    .clients-table th.gross-amount-column,
+    .clients-table td.gross-amount-column,
+    .clients-table th.net-amount-column,
+    .clients-table td.net-amount-column {
+      display: none;
     }
 
     .clients-table th.name-column,
     .clients-table td.name-column {
-      min-width: 160px;
-      max-width: 220px;
+      min-width: 140px;
+      max-width: 180px;
     }
 
     .clients-table th.email-column,
@@ -1076,49 +1101,66 @@ video {
       max-width: 200px;
     }
 
+    .clients-table th.phone-column,
+    .clients-table td.phone-column {
+      min-width: 90px;
+      max-width: 110px;
+    }
+
     .clients-table th.plan-column,
     .clients-table td.plan-column {
-      min-width: 130px;
-      max-width: 160px;
+      min-width: 110px;
+      max-width: 130px;
     }
 
     .clients-table th.method-column,
     .clients-table td.method-column {
-      min-width: 150px;
-      max-width: 170px;
+      min-width: 130px;
+      max-width: 150px;
     }
 
     .clients-table th.due-date-column,
     .clients-table td.due-date-column {
-      min-width: 120px;
-      max-width: 150px;
+      min-width: 100px;
+      max-width: 120px;
     }
   }
 
   /* Tablet (768px - 1023px) */
   @media (min-width: 768px) and (max-width: 1023px) {
-    .clients-table th,
-    .clients-table td {
-      font-size: 0.8rem;
-      padding: 0.5rem 0.6rem;
+    .clients-table th.method-column,
+    .clients-table td.method-column,
+    .clients-table th.due-date-column,
+    .clients-table td.due-date-column,
+    .clients-table th.gross-amount-column,
+    .clients-table td.gross-amount-column,
+    .clients-table th.net-amount-column,
+    .clients-table td.net-amount-column {
+      display: none;
     }
 
     .clients-table th.name-column,
     .clients-table td.name-column {
-      min-width: 180px;
-      max-width: 250px;
+      min-width: 120px;
+      max-width: 150px;
+    }
+
+    .clients-table th.email-column,
+    .clients-table td.email-column {
+      min-width: 140px;
+      max-width: 170px;
+    }
+
+    .clients-table th.phone-column,
+    .clients-table td.phone-column {
+      min-width: 90px;
+      max-width: 110px;
     }
 
     .clients-table th.plan-column,
     .clients-table td.plan-column {
-      min-width: 140px;
-      max-width: 180px;
-    }
-
-    .clients-table th.due-date-column,
-    .clients-table td.due-date-column {
-      min-width: 130px;
-      max-width: 160px;
+      min-width: 100px;
+      max-width: 120px;
     }
   }
 
@@ -1140,6 +1182,16 @@ video {
     .client-card p {
     font-size: 0.75rem;
     line-height: 1rem;
+  }
+
+    .expanded-content {
+    margin-top: 0.75rem;
+  }
+
+    .expanded-content > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
   }
   }
 
@@ -1195,7 +1247,7 @@ video {
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
     padding: 0.5rem 0;
-    z-index: 100; /* Valor numérico direto */
+    z-index: 100;
 }
 
   @media (max-width: 640px) {
@@ -1711,9 +1763,6 @@ video {
 .w-40 {
   width: 10rem;
 }
-.w-48 {
-  width: 12rem;
-}
 .w-6 {
   width: 1.5rem;
 }
@@ -2131,6 +2180,10 @@ video {
 }
 @media (min-width: 640px) {
 
+  .sm\:table-cell {
+    display: table-cell;
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2162,6 +2215,10 @@ video {
     display: block;
   }
 
+  .md\:table-cell {
+    display: table-cell;
+  }
+
   .md\:hidden {
     display: none;
   }
@@ -2191,6 +2248,12 @@ video {
 @media (min-width: 1280px) {
 
   .xl\:table-cell {
+    display: table-cell;
+  }
+}
+@media (min-width: 1536px) {
+
+  .\32xl\:table-cell {
     display: table-cell;
   }
 }
