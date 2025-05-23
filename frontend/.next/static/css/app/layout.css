@@ -851,10 +851,36 @@ video {
   text-align: center;
     vertical-align: middle;
     transition: all 0.3s ease-in-out;
+}
+
+  /* Ajuste específico para th (títulos das colunas) - Alterado para permitir texto completo */
+  .clients-table th {
+  cursor: pointer;
+  color: var(--text-primary);
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+    background: var(--table-header-bg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 1rem;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+    word-break: break-word;
+    line-height: 1.2;
+}
+
+  /* Ajuste específico para td (células de dados) - Mantém comportamento original com ellipsis */
+  .clients-table td {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    font-size: 0.9rem;
+  }
 
   /* Definir larguras mínimas e máximas para cada coluna */
   .clients-table th.status-column,
@@ -916,26 +942,6 @@ video {
     min-width: 100px;
     max-width: 120px;
     position: relative;
-  }
-
-  .clients-table th {
-  cursor: pointer;
-  color: var(--text-primary);
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
-    background: var(--table-header-bg);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    padding: 0.75rem 1rem;
-    white-space: nowrap;
-}
-
-  .clients-table td {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-    font-size: 0.9rem;
   }
 
   .clients-table tr {
@@ -1080,8 +1086,13 @@ video {
     }
   }
 
-  /* Desktop Médio (1024px - 1279px) */
+  /* Desktop Médio (1024px - 1279px) - Ajuste para reduzir tamanho do título */
   @media (min-width: 1024px) and (max-width: 1279px) {
+    .clients-table th {
+      font-size: 0.9rem; /* Reduz o tamanho da fonte */
+      padding: 0.5rem 0.75rem; /* Ajusta o padding */
+    }
+
     .clients-table th.gross-amount-column,
     .clients-table td.gross-amount-column,
     .clients-table th.net-amount-column,
@@ -1128,6 +1139,10 @@ video {
 
   /* Tablet (768px - 1023px) */
   @media (min-width: 768px) and (max-width: 1023px) {
+    .clients-table th {
+      font-size: 1rem; /* Mantém um tamanho razoável */
+    }
+
     .clients-table th.method-column,
     .clients-table td.method-column,
     .clients-table th.due-date-column,
@@ -1334,6 +1349,19 @@ video {
     background-color: #00ae5f;
   }
 
+  /* Ajuste do botão para telas maiores a partir de 1024px */
+  @media (min-width: 1024px) {
+    .new-client-button {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+      min-width: 200px; /* Garante um tamanho mínimo proporcional */
+  }
+  }
+
   @media (max-width: 640px) {
     .new-client-button {
     padding-left: 0.75rem;
@@ -1358,8 +1386,14 @@ video {
 
   @media (min-width: 640px) {
     .dashboard-container h1 {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
+    border-bottom-width: 2px;
+    border-color: var(--accent-blue);
+    padding-bottom: 0.5rem;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+    font-weight: 700;
+    animation: fadeIn 0.3s ease-in-out;
+      animation: fadeIn 0.5s ease-in-out;
   }
   }
 
@@ -2035,6 +2069,14 @@ video {
 .uppercase {
   text-transform: uppercase;
 }
+.text-\[\#ff4d4f\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 77 79 / var(--tw-text-opacity, 1));
+}
+.text-\[\#ff7f50\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 127 80 / var(--tw-text-opacity, 1));
+}
 .text-\[var\(--accent-blue\)\] {
   color: var(--accent-blue);
 }
@@ -2139,45 +2181,56 @@ video {
 }
 
 /* Zerar configurações padrão do body e html */
+
 .hover\:bg-blue-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(37 99 235 / var(--tw-bg-opacity, 1));
 }
+
 .hover\:bg-gray-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(75 85 99 / var(--tw-bg-opacity, 1));
 }
+
 .hover\:bg-pink-600:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 39 119 / var(--tw-bg-opacity, 1));
 }
+
 .hover\:text-\[var\(--accent-blue\)\]:hover {
   color: var(--accent-blue);
 }
+
 .focus\:border-\[var\(--accent-blue\)\]:focus {
   border-color: var(--accent-blue);
 }
+
 .focus\:shadow-\[0_0_0_2px_rgba\(241\2c 145\2c 109\2c 0\.3\)\]:focus {
   --tw-shadow: 0 0 0 2px rgba(241,145,109,0.3);
   --tw-shadow-colored: 0 0 0 2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+
 .focus\:outline-none:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
+
 .focus\:ring-2:focus {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);
   box-shadow: var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000);
 }
+
 .focus\:ring-\[var\(--accent-blue\)\]:focus {
   --tw-ring-color: var(--accent-blue);
 }
+
 .focus\:ring-pink-500:focus {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(236 72 153 / var(--tw-ring-opacity, 1));
 }
+
 @media (min-width: 640px) {
 
   .sm\:table-cell {
@@ -2209,6 +2262,7 @@ video {
     line-height: 2.25rem;
   }
 }
+
 @media (min-width: 768px) {
 
   .md\:block {
@@ -2223,6 +2277,7 @@ video {
     display: none;
   }
 }
+
 @media (min-width: 1024px) {
 
   .lg\:table-cell {
@@ -2245,18 +2300,21 @@ video {
     flex-direction: row;
   }
 }
+
 @media (min-width: 1280px) {
 
   .xl\:table-cell {
     display: table-cell;
   }
 }
+
 @media (min-width: 1536px) {
 
   .\32xl\:table-cell {
     display: table-cell;
   }
 }
+
 /*!***************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/toast.css ***!
   \***************************************************************************************************************************************************************************************************************************************************************/
