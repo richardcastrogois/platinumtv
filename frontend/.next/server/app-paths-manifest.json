@@ -1,7 +1,7 @@
 {
-  "/clients/page": "app/clients/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
   "/page": "app/page.js",
-  "/clients/new/page": "app/clients/new/page.js",
   "/dashboard/page": "app/dashboard/page.js",
+  "/clients/page": "app/clients/page.js",
   "/expired/page": "app/expired/page.js"
 }
