@@ -814,6 +814,33 @@ video {
   }
   }
 
+  /* Estilização genérica para tabelas responsivas */
+
+  .table-container.fade {
+    opacity: 0.5;
+    transform: scale(0.98);
+  }
+
+  /* Ajuste específico para th (títulos das colunas) */
+
+  /* Container para o conteúdo do th (texto + ícone) */
+
+  /* Ajuste específico para td (células de dados) */
+
+  .responsive-table .sort-icon {
+  display: inline-block;
+  vertical-align: middle;
+  color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+  /* Definir larguras relativas para cada coluna (proporcionais) */
+
+  /* Ajustes de responsividade para a tabela com container queries */
+
+  /* Fallback com media queries para navegadores que não suportam container queries */
+
+  /* Ajustes específicos para o ClientsTable */
   .clients-table-container {
   border-radius: 0.75rem;
   background-color: var(--table-bg);
@@ -826,24 +853,35 @@ video {
   backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
     min-height: 400px;
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Remove o scroll lateral */
+    width: 100%; /* Garante que o container ocupe toda a largura disponível */
+    box-sizing: border-box;
+    container-type: inline-size; /* Suporte para container queries */
 }
-
   .clients-table-container.fade {
     opacity: 0.5;
     transform: scale(0.98);
+  }
+  @media (max-width: 767px) {
+    .clients-table-container {
+    padding: 0.25rem;
+  }
+  }
+  @media (max-width: 639px) {
+    .clients-table-container {
+    padding: 0.25rem;
+  }
   }
 
   .clients-table {
   width: 100%;
   border-collapse: collapse;
   color: var(--text-primary);
-    table-layout: auto;
+    table-layout: fixed; /* Força as colunas a se ajustarem proporcionalmente */
     transition: all 0.3s ease-in-out;
 }
 
-  .clients-table th,
-  .clients-table td {
+  .clients-table th,.clients-table td {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-left: 0.75rem;
@@ -851,9 +889,9 @@ video {
   text-align: center;
     vertical-align: middle;
     transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
 }
 
-  /* Ajuste específico para th (títulos das colunas) - Alterado para permitir texto completo */
   .clients-table th {
   cursor: pointer;
   color: var(--text-primary);
@@ -862,86 +900,18 @@ video {
   transition-duration: 300ms;
     background: var(--table-header-bg);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    padding: 0.75rem 1rem;
-    overflow: visible;
-    text-overflow: clip;
-    white-space: normal;
-    word-break: break-word;
-    line-height: 1.2;
+    padding: 0.5rem 0.75rem;
 }
 
-  /* Ajuste específico para td (células de dados) - Mantém comportamento original com ellipsis */
   .clients-table td {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
     font-size: 0.9rem;
-  }
-
-  /* Definir larguras mínimas e máximas para cada coluna */
-  .clients-table th.status-column,
-  .clients-table td.status-column {
-    min-width: 50px;
-    max-width: 60px;
-  }
-
-  .clients-table th.name-column,
-  .clients-table td.name-column {
-    min-width: 150px;
-    max-width: 200px;
-  }
-
-  .clients-table th.email-column,
-  .clients-table td.email-column {
-    min-width: 180px;
-    max-width: 220px;
-  }
-
-  .clients-table th.phone-column,
-  .clients-table td.phone-column {
-    min-width: 100px;
-    max-width: 120px;
-  }
-
-  .clients-table th.plan-column,
-  .clients-table td.plan-column {
-    min-width: 120px;
-    max-width: 150px;
-  }
-
-  .clients-table th.method-column,
-  .clients-table td.method-column {
-    min-width: 140px;
-    max-width: 160px;
-  }
-
-  .clients-table th.due-date-column,
-  .clients-table td.due-date-column {
-    min-width: 110px;
-    max-width: 140px;
-  }
-
-  .clients-table th.gross-amount-column,
-  .clients-table td.gross-amount-column {
-    min-width: 100px;
-    max-width: 120px;
-  }
-
-  .clients-table th.net-amount-column,
-  .clients-table td.net-amount-column {
-    min-width: 100px;
-    max-width: 120px;
-  }
-
-  .clients-table th.actions-column,
-  .clients-table td.actions-column {
-    min-width: 100px;
-    max-width: 120px;
-    position: relative;
   }
 
   .clients-table tr {
@@ -962,9 +932,401 @@ video {
   display: inline-block;
   vertical-align: middle;
   color: var(--text-primary);
-    margin-left: 0.5rem;
     font-size: 0.9rem;
 }
+
+  .clients-table th,.clients-table td { /* Divide igualmente entre 11 colunas inicialmente */ /* Garante um tamanho mínimo */
+    width: calc(100% / 11); /* Divide igualmente entre 11 colunas inicialmente */
+    min-width: 80px; /* Garante um tamanho mínimo */
+  }
+
+  @container (max-width: 1100px) {
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (9 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (9 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (9 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (9 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (9 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (9 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+  }
+
+  @container (max-width: 900px) {
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (7 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (7 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (7 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (7 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (7 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (7 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+  }
+
+  @container (max-width: 700px) {
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (5 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (5 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (5 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (5 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (5 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (5 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+  }
+
+  @container (max-width: 500px) {
+    .clients-table th[data-priority="4"],.clients-table td[data-priority="4"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (4 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 4);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="4"],.clients-table td[data-priority="4"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (4 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 4);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="4"],.clients-table td[data-priority="4"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (4 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 4);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="4"],.clients-table td[data-priority="4"] {
+      display: none;
+    }
+    /* Redistribuir o espaço das colunas visíveis (4 colunas restantes) */
+    .clients-table th,.clients-table td {
+      width: calc(100% / 4);
+      min-width: 80px;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="10"],.clients-table td[data-priority="10"],.clients-table th[data-priority="9"],.clients-table td[data-priority="9"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 9);
+      min-width: 80px;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="8"],.clients-table td[data-priority="8"],.clients-table th[data-priority="7"],.clients-table td[data-priority="7"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 7);
+      min-width: 80px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="6"],.clients-table td[data-priority="6"],.clients-table th[data-priority="5"],.clients-table td[data-priority="5"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 5);
+      min-width: 80px;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .clients-table th[data-priority="4"],.clients-table td[data-priority="4"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 4);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="4"],.clients-table td[data-priority="4"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 4);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="4"],.clients-table td[data-priority="4"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 4);
+      min-width: 80px;
+    }
+    .clients-table th[data-priority="4"],.clients-table td[data-priority="4"] {
+      display: none;
+    }
+    .clients-table th,.clients-table td {
+      width: calc(100% / 4);
+      min-width: 80px;
+    }
+  }
+
+  /* Ajustes específicos para os títulos (th) da tabela de clientes */
+  .clients-table th {
+    font-size: 0.9rem; /* Tamanho base para telas menores */
+    font-weight: 600;
+    padding: 0.5rem 0.75rem;
+    white-space: nowrap; /* Evita quebras de linha nos títulos */
+    min-width: 100px; /* Largura mínima para suportar textos maiores */
+    transition: font-size 0.3s ease-in-out; /* Transição suave ao redimensionar */
+  }
+
+  /* Ajuste para telas médias (640px a 1024px) */
+  @media (min-width: 640px) and (max-width: 1024px) {
+    .clients-table th {
+      font-size: 1rem; /* Tamanho intermediário */
+      min-width: 120px; /* Aumenta a largura mínima */
+    }
+  }
+
+  /* Ajuste para telas grandes (acima de 1024px) */
+  @media (min-width: 1024px) {
+    .clients-table th {
+      font-size: 1.2rem; /* Tamanho maior para telas grandes */
+      min-width: 150px; /* Aumenta mais a largura mínima */
+    }
+  }
+  /* Caso não goste dos tamanhos, ajuste os valores de font-size (ex.: 0.8rem, 0.9rem, 1rem) ou min-width (ex.: 80px, 100px, 120px) conforme preferir. */
+
+  /* Garante que o conteúdo interno da célula (os botões) também esteja centralizado */
+  .actions-column > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   /* Cores condicionais para Status */
   .status-text--inativo {
@@ -1028,160 +1390,9 @@ video {
     font-weight: bold;
   }
 
-  /* Ajustes de responsividade para a tabela (apenas md:block) */
-  /* Desktop Grande (≥1280px) */
-  @media (min-width: 1280px) {
-    .clients-table th,
-    .clients-table td {
-      font-size: 0.9rem;
-      padding: 0.75rem 1rem;
-    }
-
-    .clients-table th.name-column,
-    .clients-table td.name-column {
-      min-width: 150px;
-      max-width: 200px;
-    }
-
-    .clients-table th.email-column,
-    .clients-table td.email-column {
-      min-width: 180px;
-      max-width: 220px;
-    }
-
-    .clients-table th.phone-column,
-    .clients-table td.phone-column {
-      min-width: 100px;
-      max-width: 120px;
-    }
-
-    .clients-table th.plan-column,
-    .clients-table td.plan-column {
-      min-width: 120px;
-      max-width: 150px;
-    }
-
-    .clients-table th.method-column,
-    .clients-table td.method-column {
-      min-width: 140px;
-      max-width: 160px;
-    }
-
-    .clients-table th.due-date-column,
-    .clients-table td.due-date-column {
-      min-width: 110px;
-      max-width: 140px;
-    }
-
-    .clients-table th.gross-amount-column,
-    .clients-table td.gross-amount-column {
-      min-width: 100px;
-      max-width: 120px;
-    }
-
-    .clients-table th.net-amount-column,
-    .clients-table td.net-amount-column {
-      min-width: 100px;
-      max-width: 120px;
-    }
-  }
-
-  /* Desktop Médio (1024px - 1279px) - Ajuste para reduzir tamanho do título */
-  @media (min-width: 1024px) and (max-width: 1279px) {
-    .clients-table th {
-      font-size: 0.9rem; /* Reduz o tamanho da fonte */
-      padding: 0.5rem 0.75rem; /* Ajusta o padding */
-    }
-
-    .clients-table th.gross-amount-column,
-    .clients-table td.gross-amount-column,
-    .clients-table th.net-amount-column,
-    .clients-table td.net-amount-column {
-      display: none;
-    }
-
-    .clients-table th.name-column,
-    .clients-table td.name-column {
-      min-width: 140px;
-      max-width: 180px;
-    }
-
-    .clients-table th.email-column,
-    .clients-table td.email-column {
-      min-width: 160px;
-      max-width: 200px;
-    }
-
-    .clients-table th.phone-column,
-    .clients-table td.phone-column {
-      min-width: 90px;
-      max-width: 110px;
-    }
-
-    .clients-table th.plan-column,
-    .clients-table td.plan-column {
-      min-width: 110px;
-      max-width: 130px;
-    }
-
-    .clients-table th.method-column,
-    .clients-table td.method-column {
-      min-width: 130px;
-      max-width: 150px;
-    }
-
-    .clients-table th.due-date-column,
-    .clients-table td.due-date-column {
-      min-width: 100px;
-      max-width: 120px;
-    }
-  }
-
-  /* Tablet (768px - 1023px) */
-  @media (min-width: 768px) and (max-width: 1023px) {
-    .clients-table th {
-      font-size: 1rem; /* Mantém um tamanho razoável */
-    }
-
-    .clients-table th.method-column,
-    .clients-table td.method-column,
-    .clients-table th.due-date-column,
-    .clients-table td.due-date-column,
-    .clients-table th.gross-amount-column,
-    .clients-table td.gross-amount-column,
-    .clients-table th.net-amount-column,
-    .clients-table td.net-amount-column {
-      display: none;
-    }
-
-    .clients-table th.name-column,
-    .clients-table td.name-column {
-      min-width: 120px;
-      max-width: 150px;
-    }
-
-    .clients-table th.email-column,
-    .clients-table td.email-column {
-      min-width: 140px;
-      max-width: 170px;
-    }
-
-    .clients-table th.phone-column,
-    .clients-table td.phone-column {
-      min-width: 90px;
-      max-width: 110px;
-    }
-
-    .clients-table th.plan-column,
-    .clients-table td.plan-column {
-      min-width: 100px;
-      max-width: 120px;
-    }
-  }
-
-  /* Mobile (<768px) */
+  /* Ajustes para telas pequenas (mobile) */
   @media (max-width: 767px) {
-    .clients-table-container {
+    .table-container {
     padding: 0.25rem;
   }
 
@@ -1211,7 +1422,7 @@ video {
   }
 
   @media (max-width: 639px) {
-    .clients-table-container {
+    .table-container {
     padding: 0.25rem;
   }
 
@@ -1362,6 +1573,24 @@ video {
   }
   }
 
+  /* Estilo base para o h1 em todas as resoluções */
+  .dashboard-container h1 {
+    background: linear-gradient(90deg, #F1916D 30%, #AE7DAC 70%); /* Ajuste no gradiente */
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease-in-out;
+    padding-bottom: 0.5rem;
+    font-weight: 700;
+    animation: fadeIn 0.3s ease-in-out;
+    /* Tamanho fluido que escala com a tela */
+    font-size: clamp(1.5rem, 3.5vw + 0.5rem, 3rem); /* Vai de 24px a 48px */
+    /* Ajuste para descer o título e evitar corte */
+    padding-top: 1rem; /* Adiciona 16px de padding superior */
+  }
+
+  /* Ajustes para telas menores (abaixo de 640px) */
   @media (max-width: 640px) {
     .new-client-button {
     padding-left: 0.75rem;
@@ -1379,22 +1608,15 @@ video {
 
     .dashboard-container h1 {
     text-align: center;
-    font-size: 1.5rem;
-    line-height: 2rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* Sombra mais sutil */
   }
   }
 
+  /* Ajustes para telas maiores (acima de 640px) */
   @media (min-width: 640px) {
     .dashboard-container h1 {
-    border-bottom-width: 2px;
-    border-color: var(--accent-blue);
-    padding-bottom: 0.5rem;
-    font-size: 2.25rem;
-    line-height: 2.5rem;
-    font-weight: 700;
-    animation: fadeIn 0.3s ease-in-out;
-      animation: fadeIn 0.5s ease-in-out;
-  }
+      /* Mantemos o clamp definindo o tamanho, sem necessidade de ajuste extra aqui */
+    }
   }
 
   .table-wrapper {
@@ -1788,6 +2010,9 @@ video {
 .min-h-screen {
   min-height: 100vh;
 }
+.w-0 {
+  width: 0px;
+}
 .w-16 {
   width: 4rem;
 }
@@ -1814,6 +2039,9 @@ video {
 }
 .max-w-md {
   max-width: 28rem;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 .-translate-y-1\/2 {
   --tw-translate-y: -50%;
@@ -2237,6 +2465,10 @@ video {
     display: table-cell;
   }
 
+  .sm\:w-auto {
+    width: auto;
+  }
+
   .sm\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -2314,7 +2546,6 @@ video {
     display: table-cell;
   }
 }
-
 /*!***************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[12].use[3]!./src/app/toast.css ***!
   \***************************************************************************************************************************************************************************************************************************************************************/
